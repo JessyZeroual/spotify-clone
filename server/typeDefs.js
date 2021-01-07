@@ -22,6 +22,8 @@ const typeDefs = gql`
     name: String
     type: String
     images: [Image]
+    totalTracks: Int
+    releaseDate: String
     artistId: String
     artistName: String
   }

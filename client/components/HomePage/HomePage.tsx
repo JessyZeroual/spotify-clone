@@ -1,10 +1,11 @@
 import React from "react";
-import { Container, Text } from "./HomePage.styled";
+import { Container } from "../../styles/commonStyled";
+import NewRelease from "../NewReleaseList/NewReleaseList";
 
 const HomePage: React.FC = () => {
   return (
     <Container>
-      <Text>hello</Text>
+      <NewRelease />
     </Container>
   );
 };

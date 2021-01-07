@@ -21,7 +21,7 @@ module.exports = {
 
     newReleases: async (_, args, context) => {
       const response = await fetch(
-        `https://api.spotify.com/v1/browse/new-releases`,
+        `https://api.spotify.com/v1/browse/new-releases?country=FR&offset=0&limit=20`,
         {
           method: "GET",
           headers: { Authorization: "Bearer " + context.token },
