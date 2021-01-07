@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export default gql`
-  query newreleases {
-    newReleases {
+  query trendyAlbums {
+    trendyAlbums {
       id
       name
       type

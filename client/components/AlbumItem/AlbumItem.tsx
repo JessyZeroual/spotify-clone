@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "styled-components";
-import { WrapperItemNewRelease, Image } from "./NewReleaseItem.styled";
+import { WrapperAlbumItem, Image } from "./AlbumItem.styled";
 import { Text } from "../../styles/commonStyled";
 import truncateString from "../../utils/truncateString";
 
-const NewReleaseItem: React.FC<{
+const AlbumItem: React.FC<{
   name: string;
   uri: string;
   type: string;
@@ -12,7 +12,7 @@ const NewReleaseItem: React.FC<{
 }> = ({ name, uri, type, artistName }) => {
   const themeContext = useContext(ThemeContext);
   return (
-    <WrapperItemNewRelease>
+    <WrapperAlbumItem>
       <Image
         source={{
           uri
@@ -22,8 +22,8 @@ const NewReleaseItem: React.FC<{
       <Text color={themeContext.colors.lightGrey}>
         {type} • {truncateString(artistName, 15)}
       </Text>
-    </WrapperItemNewRelease>
+    </WrapperAlbumItem>
   );
 };
 
-export default NewReleaseItem;
+export default AlbumItem;
