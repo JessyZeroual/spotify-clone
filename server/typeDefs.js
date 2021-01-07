@@ -17,12 +17,20 @@ const typeDefs = gql`
   type Music {
     name: String
   }
+  type NewRelease {
+    id: String
+    name: String
+    type: String
+    images: [Image]
+    artistId: String
+    artistName: String
+  }
 
   type Query {
     artists(searchTerms: String!): [Artist]
     albums: [Album]
     musics: [Music]
-    getToken: String
+    newReleases: [NewRelease]
   }
 `;
 
