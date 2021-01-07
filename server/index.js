@@ -13,6 +13,6 @@ const server = new ApolloServer({
   },
 });
 
-server.listen().then(({ url }) => {
+server.listen({ host: "192.168.1.14", port: 8000 }).then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });

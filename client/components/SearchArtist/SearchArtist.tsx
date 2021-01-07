@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { TextInput } from "react-native";
 import { useLazyQuery } from "@apollo/client";
-import GET_ARTISTS from "../../gql/Query/getArtists";
-import { Container, Text } from "./SearchArtist.styled";
+import GET_ARTISTS from "../../gql/Query/artists";
+import { Container, Text } from "../../styles/commonStyled";
 
 const SearchArtist: React.FC = () => {
   const [searchTerms, setSearchTerms] = useState("");
