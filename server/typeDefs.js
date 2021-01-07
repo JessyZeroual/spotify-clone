@@ -12,12 +12,6 @@ const typeDefs = gql`
     images: [Image]
   }
   type Album {
-    name: String
-  }
-  type Music {
-    name: String
-  }
-  type NewRelease {
     id: String
     name: String
     type: String
@@ -27,12 +21,16 @@ const typeDefs = gql`
     artistId: String
     artistName: String
   }
+  type Music {
+    name: String
+  }
 
   type Query {
     artists(searchTerms: String!): [Artist]
     albums: [Album]
     musics: [Music]
-    newReleases: [NewRelease]
+    newAlbumsReleases: [Album]
+    trendyAlbums: [Album]
   }
 `;
 

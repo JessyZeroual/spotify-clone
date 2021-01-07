@@ -1,23 +1,28 @@
 import React, { useContext } from "react";
 import { FlatList } from "react-native";
-import { useQuery } from "@apollo/client";
 import { ThemeContext } from "styled-components";
-import WrapperNewReleases from "./NewReleaseList.styled";
+import WrapperAlbumList from "./AlbumList.styled";
 import { Text } from "../../styles/commonStyled";
-import NewReleaseItem from "../NewReleaseItem/NewReleaseItem";
-import GET_NEW_RELEASES from "../../gql/Query/newReleases";
+import NewReleaseItem from "../AlbumItem/AlbumItem";
 
-const NewReleaseList: React.FC = () => {
+const AlbumList: React.FC<{
+  nameList: string;
+  data: {
+    id: string;
+    name: string;
+    images: { url: string }[];
+    type: string;
+    artistName: string;
+  }[];
+}> = ({ nameList, data }) => {
   const themeContext = useContext(ThemeContext);
-  const { loading, data } = useQuery(GET_NEW_RELEASES);
-  if (loading) return <Text>Chargement...</Text>;
   return (
-    <WrapperNewReleases>
+    <WrapperAlbumList>
       <Text bold fontSize={themeContext.fontSizes.h2}>
-        Dernières sorties populaires
+        {nameList}
       </Text>
       <FlatList
-        data={data.newReleases}
+        data={data}
         renderItem={({ item }) => (
           <NewReleaseItem
             name={item.name}
@@ -29,8 +34,8 @@ const NewReleaseList: React.FC = () => {
         keyExtractor={(item) => item.id}
         horizontal
       />
-    </WrapperNewReleases>
+    </WrapperAlbumList>
   );
 };
 
-export default NewReleaseList;
+export default AlbumList;

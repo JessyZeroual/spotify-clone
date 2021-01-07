@@ -19,7 +19,7 @@ module.exports = {
       }));
     },
 
-    newReleases: async (_, args, context) => {
+    newAlbumsReleases: async (_, args, context) => {
       const response = await fetch(
         `https://api.spotify.com/v1/browse/new-releases?country=FR&offset=0&limit=20`,
         {
@@ -38,6 +38,31 @@ module.exports = {
         releaseDate: album.release_date,
         artistId: album.artists[0].id,
         artistName: album.artists[0].name,
+      }));
+    },
+    trendyAlbums: async (_, args, context) => {
+      const response = await fetch(
+        `https://api.spotify.com/v1/playlists/37i9dQZEVXbIPWwFssbupI/tracks?offset=0&limit=50`,
+        {
+          method: "GET",
+          headers: { Authorization: "Bearer " + context.token },
+        }
+      );
+      const data = await response.json();
+
+      const mostPopularyItems = data.items.filter(
+        ({ track }) => track.popularity > 75
+      );
+
+      return mostPopularyItems.map(({ track }) => ({
+        id: track.album.id,
+        name: track.album.name,
+        type: track.album.type,
+        images: track.album.images,
+        totalTracks: track.album.total_tracks,
+        releaseDate: track.album.release_date,
+        artistId: track.album.artists[0].id,
+        artistName: track.album.artists[0].name,
       }));
     },
 
