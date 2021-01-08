@@ -65,6 +65,27 @@ module.exports = {
         artistName: track.album.artists[0].name,
       }));
     },
+    recommendedAlbums: async (_, args, context) => {
+      const response = await fetch(
+        `https://api.spotify.com/v1/recommendations?seed_artists=2eh8cEKZk4VeruUrGq748D%2C1PTl9q5EaEZejVGts7MBLN&seed_genres=hip-hop&seed_tracks=57sOSHzR4aieOMe99cHqKy%2C79Gk0yMElcX60EJwqdP4xH`,
+        {
+          method: "GET",
+          headers: { Authorization: "Bearer " + context.token },
+        }
+      );
+      const data = await response.json();
+
+      return data.tracks.map((track) => ({
+        id: track.album.id,
+        name: track.album.name,
+        type: track.album.type,
+        images: track.album.images,
+        totalTracks: track.album.total_tracks,
+        releaseDate: track.album.release_date,
+        artistId: track.album.artists[0].id,
+        artistName: track.album.artists[0].name,
+      }));
+    },
 
     albums: () => [
       {

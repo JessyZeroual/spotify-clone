@@ -31,6 +31,7 @@ const typeDefs = gql`
     musics: [Music]
     newAlbumsReleases: [Album]
     trendyAlbums: [Album]
+    recommendedAlbums: [Album]
   }
 `;
 
