@@ -4,7 +4,7 @@ module.exports = {
   Query: {
     artists: async (_, { searchTerms }, context) => {
       const response = await fetch(
-        `https://api.spotify.com/v1/search?q=${searchTerms}&type=artist`,
+        `https://api.spotify.com/v1/search?q=${searchTerms}&type=artist&market=FR&limit=10`,
         {
           method: "GET",
           headers: { Authorization: "Bearer " + context.token },
@@ -15,6 +15,7 @@ module.exports = {
       return data.artists.items.map((artist) => ({
         id: artist.id,
         name: artist.name,
+        type: artist.type,
         images: artist.images,
       }));
     },
