@@ -1,7 +1,5 @@
 import styled from "styled-components/native";
 
-const WrapperAlbumList = styled.View`
-  padding: 20px;
-`;
+const WrapperAlbumList = styled.View``;
 
 export default WrapperAlbumList;

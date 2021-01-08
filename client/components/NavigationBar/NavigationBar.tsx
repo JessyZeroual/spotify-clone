@@ -7,8 +7,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeContext } from "styled-components";
 import getNameIconFromRoute from "./NavigationBar.utils";
 
-import HomePage from "../HomePage/HomePage";
-import SearchArtist from "../SearchArtist/SearchArtist";
+import HomePage from "../../screens/HomePage/HomePage";
+import SearchArtist from "../../screens/SearchPage/SearchPage";
 
 const NavigationBar: React.FC = () => {
   const themeContext = useContext(ThemeContext);
@@ -18,15 +18,11 @@ const NavigationBar: React.FC = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Home"
-          headerMode="none"
-          style={{ color: themeContext.colors.primary }}
-        >
+        <Stack.Navigator initialRouteName="Home" headerMode="none">
           <Stack.Screen name="Home">
             {() => (
               <Tab.Navigator
-                initialRouteName="HomePage"
+                initialRouteName="Recherche"
                 screenOptions={({ route }) => ({
                   tabBarIcon: ({ color, size }) => (
                     <AntDesign
@@ -49,8 +45,6 @@ const NavigationBar: React.FC = () => {
               </Tab.Navigator>
             )}
           </Stack.Screen>
-
-          <Stack.Screen name="Settings" component={HomePage} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
