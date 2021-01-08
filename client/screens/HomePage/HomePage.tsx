@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
   if (loading) return <Loader />;
 
   return (
-    <Container>
+    <Container edges={["right", "left", "top"]}>
       <ScrollView>
         <AlbumList
           nameList="Dernières sorties populaires"

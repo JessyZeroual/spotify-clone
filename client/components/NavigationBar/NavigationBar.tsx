@@ -22,7 +22,7 @@ const NavigationBar: React.FC = () => {
           <Stack.Screen name="Home">
             {() => (
               <Tab.Navigator
-                initialRouteName="Recherche"
+                initialRouteName="Accueil"
                 screenOptions={({ route }) => ({
                   tabBarIcon: ({ color, size }) => (
                     <AntDesign
@@ -45,6 +45,7 @@ const NavigationBar: React.FC = () => {
               </Tab.Navigator>
             )}
           </Stack.Screen>
+          <Stack.Screen name="Settings" component={HomePage} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

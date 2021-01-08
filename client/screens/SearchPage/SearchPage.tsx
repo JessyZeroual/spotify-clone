@@ -18,7 +18,7 @@ const SearchArtist: React.FC = () => {
   }, [searchTerms]);
 
   return (
-    <Container>
+    <Container edges={["right", "left", "top"]}>
       <Text bold fontSize={themeContext.fontSizes.h1}>
         Rechercher
       </Text>
