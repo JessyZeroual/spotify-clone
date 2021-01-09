@@ -10,6 +10,7 @@ import getNameIconFromRoute from "./NavigationBar.utils";
 import HomePage from "../../screens/HomePage/HomePage";
 import SearchPage from "../../screens/SearchPage/SearchPage";
 import Artistpage from "../../screens/Artistpage/Artistpage";
+import AlbumPage from "../../screens/AlbumPage/AlbumPage";
 
 const NavigationBar: React.FC = () => {
   const themeContext = useContext(ThemeContext);
@@ -23,7 +24,7 @@ const NavigationBar: React.FC = () => {
           <Stack.Screen name="Home">
             {() => (
               <Tab.Navigator
-                initialRouteName="Recherche"
+                initialRouteName="Accueil"
                 screenOptions={({ route }) => ({
                   tabBarIcon: ({ color, size }) => (
                     <AntDesign
@@ -50,6 +51,14 @@ const NavigationBar: React.FC = () => {
                     tabBarButton: () => null
                   }}
                   component={Artistpage}
+                />
+                <Tab.Screen
+                  name="Album"
+                  options={{
+                    tabBarVisible: true,
+                    tabBarButton: () => null
+                  }}
+                  component={AlbumPage}
                 />
               </Tab.Navigator>
             )}

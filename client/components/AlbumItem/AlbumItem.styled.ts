@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const WrapperAlbumItem = styled.View`
+export const WrapperAlbumItem = styled.TouchableOpacity`
   padding: 10px 0px;
   padding-right: 10px;
 `;

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { ScrollView } from "react-native";
+import { SafeAreaView } from "react-native";
 import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
 import { ThemeContext } from "styled-components";
 import { useQuery } from "@apollo/client";
-import GET_ALBUMS_BY_ARTIST from "../../gql/Query/albumsByArtist";
+import GET_MUSICS_BY_ALBUM from "../../gql/Query/musicsByAlbum";
 import { Text } from "../../styles/commonStyled";
 import {
   Container,
@@ -11,28 +11,30 @@ import {
   Icon,
   Image,
   WrapperText
-} from "./ArtistPage.styled";
+} from "./AlbumPage.styled";
 import getFontSizeFromNumberOfCharacters from "../../utils/getFontSizeFromNumberOfCharacters";
 import truncateString from "../../utils/truncateString";
-import AlbumList from "../../components/AlbumList/AlbumList";
+
+import MusicList from "../../components/MusicList/MusicList";
 import Loader from "../../components/Loader/Loader";
 
 type ParamList = {
   Detail: {
-    artistId: string;
+    albumId: string;
     name: string;
     uri?: string;
   };
 };
 
-const Artistpage: React.FC = () => {
+const AlbumPage: React.FC = () => {
   const route = useRoute<RouteProp<ParamList, "Detail">>();
   const navigation = useNavigation();
   const themeContext = useContext(ThemeContext);
-  const { artistId, name, uri } = route.params;
-  const { loading, data } = useQuery(GET_ALBUMS_BY_ARTIST, {
-    variables: { id: artistId }
+  const { albumId, name, uri } = route.params;
+  const { loading, data } = useQuery(GET_MUSICS_BY_ALBUM, {
+    variables: { id: albumId }
   });
+
   return (
     <Container>
       <Image
@@ -49,15 +51,15 @@ const Artistpage: React.FC = () => {
           </Text>
         </WrapperText>
       </Image>
-      <ScrollView>
+      <SafeAreaView style={{ flex: 1 }}>
         {loading ? (
           <Loader />
         ) : (
-          <AlbumList nameList="" data={data.albumsByArtist} />
+          <MusicList nameList="" data={data.musicsByAlbum} />
         )}
-      </ScrollView>
+      </SafeAreaView>
     </Container>
   );
 };
 
-export default Artistpage;
+export default AlbumPage;

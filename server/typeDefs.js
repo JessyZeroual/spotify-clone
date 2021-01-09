@@ -22,17 +22,18 @@ const typeDefs = gql`
     artistName: String
   }
   type Music {
+    id: String
     name: String
+    artists: [Artist]
   }
 
   type Query {
     artists(searchTerms: String!): [Artist]
-    albums: [Album]
-    musics: [Music]
     newAlbumsReleases: [Album]
     trendyAlbums: [Album]
     recommendedAlbums: [Album]
     albumsByArtist(id: String): [Album]
+    musicsByAlbum(id: String): [Music]
   }
 `;
 

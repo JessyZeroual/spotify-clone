@@ -1,42 +1,41 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { FlatList } from "react-native";
 import { ThemeContext } from "styled-components";
-import WrapperAlbumList from "./AlbumList.styled";
+import WrapperMusicList from "./MusicList.styled";
 import { Text } from "../../styles/commonStyled";
-import AlbumItem from "../AlbumItem/AlbumItem";
+import MusicItem from "../MusicItem/MusicItem";
 
-const AlbumList: React.FC<{
+const MusicList: React.FC<{
   nameList: string;
   data: {
     id: string;
     name: string;
-    images: { url: string }[];
-    type: string;
-    artistName: string;
+    artists: { id: string; name: string }[];
   }[];
 }> = ({ nameList, data }) => {
   const themeContext = useContext(ThemeContext);
+  const [selectedId, setSelectedId] = useState("");
   return (
-    <WrapperAlbumList>
+    <WrapperMusicList>
       <Text bold fontSize={themeContext.fontSizes.h2}>
         {nameList}
       </Text>
       <FlatList
         data={data}
         renderItem={({ item }) => (
-          <AlbumItem
+          <MusicItem
             id={item.id}
             name={item.name}
-            uri={item.images[1].url}
-            type={item.type}
-            artistName={item.artistName}
+            artists={item.artists}
+            selectedId={selectedId}
+            setSelectedId={setSelectedId}
           />
         )}
         keyExtractor={(item) => item.id}
-        horizontal
+        extraData={selectedId}
       />
-    </WrapperAlbumList>
+    </WrapperMusicList>
   );
 };
 
-export default AlbumList;
+export default MusicList;
