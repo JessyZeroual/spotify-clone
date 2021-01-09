@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const removeDuplicatesObjectInArray = require("./utils/removeDuplicatesObjectInArray");
 
 module.exports = {
   Query: {
@@ -85,6 +86,29 @@ module.exports = {
         releaseDate: track.album.release_date,
         artistId: track.album.artists[0].id,
         artistName: track.album.artists[0].name,
+      }));
+    },
+    albumsByArtist: async (_, { id }, context) => {
+      const response = await fetch(
+        `https://api.spotify.com/v1/artists/${id}/albums`,
+        {
+          method: "GET",
+          headers: { Authorization: "Bearer " + context.token },
+        }
+      );
+      const data = await response.json();
+
+      const items = await removeDuplicatesObjectInArray(data.items, "name");
+
+      return items.map((item) => ({
+        id: item.id,
+        name: item.name,
+        type: item.type,
+        images: item.images,
+        totalTracks: item.total_tracks,
+        releaseDate: item.release_date,
+        artistId: item.artists[0].id,
+        artistName: item.artists[0].name,
       }));
     },
 
