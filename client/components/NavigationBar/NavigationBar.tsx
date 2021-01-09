@@ -8,7 +8,8 @@ import { ThemeContext } from "styled-components";
 import getNameIconFromRoute from "./NavigationBar.utils";
 
 import HomePage from "../../screens/HomePage/HomePage";
-import SearchArtist from "../../screens/SearchPage/SearchPage";
+import SearchPage from "../../screens/SearchPage/SearchPage";
+import Artistpage from "../../screens/Artistpage/Artistpage";
 
 const NavigationBar: React.FC = () => {
   const themeContext = useContext(ThemeContext);
@@ -22,7 +23,7 @@ const NavigationBar: React.FC = () => {
           <Stack.Screen name="Home">
             {() => (
               <Tab.Navigator
-                initialRouteName="Accueil"
+                initialRouteName="Recherche"
                 screenOptions={({ route }) => ({
                   tabBarIcon: ({ color, size }) => (
                     <AntDesign
@@ -41,11 +42,18 @@ const NavigationBar: React.FC = () => {
                 }}
               >
                 <Tab.Screen name="Accueil" component={HomePage} />
-                <Tab.Screen name="Recherche" component={SearchArtist} />
+                <Tab.Screen name="Recherche" component={SearchPage} />
+                <Tab.Screen
+                  name="Artiste"
+                  options={{
+                    tabBarVisible: true,
+                    tabBarButton: () => null
+                  }}
+                  component={Artistpage}
+                />
               </Tab.Navigator>
             )}
           </Stack.Screen>
-          <Stack.Screen name="Settings" component={HomePage} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

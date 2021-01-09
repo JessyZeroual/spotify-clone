@@ -10,10 +10,13 @@ export const Container = styled(SafeAreaView)`
 
 export const Text = styled.Text<{
   color?: string;
+  backgroundColor?: string;
   fontSize?: string;
   bold?: boolean;
 }>`
   color: ${({ color, theme }) => color || theme.colors.white};
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor || "transparent"};
   font-size: ${({ fontSize, theme }) => fontSize || theme.fontSizes.h5};
   font-weight: ${({ bold }) => (bold ? "bold" : "normal")};
 `;
