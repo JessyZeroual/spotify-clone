@@ -2,12 +2,12 @@ const getFontSizeFromNumberOfCharacters = (
   NumberOfCharacters: number
 ): string => {
   if (NumberOfCharacters < 12) {
-    return "64px";
+    return "60px";
   }
   if (NumberOfCharacters < 15) {
-    return "48px";
+    return "45px";
   }
-  return "32px";
+  return "30px";
 };
 
 export default getFontSizeFromNumberOfCharacters;

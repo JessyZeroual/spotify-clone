@@ -1,18 +1,31 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "styled-components";
+import { useNavigation } from "@react-navigation/native";
 import { WrapperAlbumItem, Image } from "./AlbumItem.styled";
 import { Text } from "../../styles/commonStyled";
 import truncateString from "../../utils/truncateString";
 
 const AlbumItem: React.FC<{
+  id: string;
   name: string;
   uri: string;
   type: string;
   artistName: string;
-}> = ({ name, uri, type, artistName }) => {
+}> = ({ id, name, uri, type, artistName }) => {
   const themeContext = useContext(ThemeContext);
+  const navigation = useNavigation();
   return (
-    <WrapperAlbumItem>
+    <WrapperAlbumItem
+      onPress={() =>
+        navigation.navigate("Album", {
+          albumId: id,
+          name,
+          uri,
+          type,
+          artistName
+        })
+      }
+    >
       <Image
         source={{
           uri
