@@ -13,7 +13,15 @@ const SearchItem: React.FC<{
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
   return (
-    <WrapperItem onPress={() => console.log(id)}>
+    <WrapperItem
+      onPress={() =>
+        navigation.navigate("Artiste", {
+          artistId: id,
+          name,
+          uri
+        })
+      }
+    >
       {uri ? (
         <Image
           source={{
