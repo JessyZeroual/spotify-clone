@@ -77,7 +77,9 @@ module.exports = {
       );
       const data = await response.json();
 
-      return data.tracks.map((track) => ({
+      const items = await removeDuplicatesObjectInArray(data.tracks, "name");
+
+      return items.map((track) => ({
         id: track.album.id,
         name: track.album.name,
         type: track.album.type,
