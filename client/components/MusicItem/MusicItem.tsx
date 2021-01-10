@@ -37,7 +37,7 @@ const MusicItem: React.FC<{
         </Text>
 
         <FlatList
-          data={artists}
+          data={artists.slice(0, 5)}
           renderItem={({ item }) => <Text>{item.name}</Text>}
           ItemSeparatorComponent={() => <Text>,&nbsp;</Text>}
           keyExtractor={(item) => item.id}
