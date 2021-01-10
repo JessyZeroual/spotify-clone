@@ -6,6 +6,10 @@ export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.black};
 `;
+export const WrapperList = styled.ScrollView`
+  padding: 15px;
+  padding-top: 0px;
+`;
 
 export const WrapperIcon = styled.TouchableOpacity`
   display: flex;
@@ -16,6 +20,12 @@ export const WrapperIcon = styled.TouchableOpacity`
   border-radius: 32px;
   background-color: rgba(33, 33, 33, 0.4);
   margin: 15px;
+`;
+export const WrapperText = styled(LinearGradient)`
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  padding-left: 15px;
 `;
 
 export const Icon = styled(Feather)`
@@ -28,11 +38,4 @@ export const Image = styled.ImageBackground`
   padding-top: 35px;
   display: flex;
   justify-content: space-between;
-`;
-
-export const WrapperText = styled(LinearGradient)`
-  display: flex;
-  justify-content: center;
-  height: 100px;
-  padding-left: 15px;
 `;

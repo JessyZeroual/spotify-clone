@@ -5,6 +5,7 @@ export const WrapperItem = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   height: 80px;
+  padding: 0px 15px;
 `;
 
 export const Image = styled.Image`

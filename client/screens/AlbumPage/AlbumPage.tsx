@@ -14,6 +14,7 @@ import {
 } from "./AlbumPage.styled";
 import getFontSizeFromNumberOfCharacters from "../../utils/getFontSizeFromNumberOfCharacters";
 import truncateString from "../../utils/truncateString";
+import Logo from "../../assets/vinyl.jpg";
 
 import MusicList from "../../components/MusicList/MusicList";
 import Loader from "../../components/Loader/Loader";
@@ -38,9 +39,13 @@ const AlbumPage: React.FC = () => {
   return (
     <Container>
       <Image
-        source={{
+        source={
           uri
-        }}
+            ? {
+                uri
+              }
+            : Logo
+        }
       >
         <WrapperIcon onPress={() => navigation.goBack()}>
           <Icon name="chevron-left" color="white" size={25} />
