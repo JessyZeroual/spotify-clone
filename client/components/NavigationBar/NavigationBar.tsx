@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AntDesign } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -11,6 +11,8 @@ import HomePage from "../../screens/HomePage/HomePage";
 import SearchPage from "../../screens/SearchPage/SearchPage";
 import Artistpage from "../../screens/Artistpage/Artistpage";
 import AlbumPage from "../../screens/AlbumPage/AlbumPage";
+import LibraryPage from "../../screens/LibraryPage/LibraryPage";
+import SettingPage from "../../screens/SettingPage/SettingPage";
 
 const NavigationBar: React.FC = () => {
   const themeContext = useContext(ThemeContext);
@@ -27,7 +29,7 @@ const NavigationBar: React.FC = () => {
                 initialRouteName="Accueil"
                 screenOptions={({ route }) => ({
                   tabBarIcon: ({ color, size }) => (
-                    <AntDesign
+                    <Ionicons
                       name={getNameIconFromRoute(route.name)}
                       size={size}
                       color={color}
@@ -46,6 +48,8 @@ const NavigationBar: React.FC = () => {
               >
                 <Tab.Screen name="Accueil" component={HomePage} />
                 <Tab.Screen name="Recherche" component={SearchPage} />
+                <Tab.Screen name="Biblioteque" component={LibraryPage} />
+                <Tab.Screen name="Parametres" component={SettingPage} />
                 <Tab.Screen
                   name="Artiste"
                   options={{

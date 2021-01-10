@@ -1,9 +1,15 @@
 const getNameIconFromRoute = (routeName: string): string => {
   if (routeName === "Accueil") {
-    return "home";
+    return "home-sharp";
   }
   if (routeName === "Recherche") {
-    return "search1";
+    return "search";
+  }
+  if (routeName === "Biblioteque") {
+    return "library";
+  }
+  if (routeName === "Parametres") {
+    return "settings";
   }
   return "exclamationcircleo";
 };
