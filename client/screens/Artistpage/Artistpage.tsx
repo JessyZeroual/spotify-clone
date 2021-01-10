@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
 import { ThemeContext } from "styled-components";
 import { useQuery } from "@apollo/client";
-import GET_ALBUMS_BY_ARTIST from "../../gql/Query/albumsByArtist";
+import GET_ALBUMS_BY_ARTIST from "../../gql/albums/Query/albumsByArtist";
 import { Text } from "../../styles/commonStyled";
 import {
   Container,

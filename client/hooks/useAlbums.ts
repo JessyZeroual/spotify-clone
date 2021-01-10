@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
-import GET_NEW_ALBUMS_RELEASES from "../gql/Query/newAlbumsReleases";
-import GET_TRENDY_ALBUMS from "../gql/Query/trendyAlbums";
-import GET_RECOMMENDED_ALBUMS from "../gql/Query/recommendedAlbums";
+import GET_NEW_ALBUMS_RELEASES from "../gql/albums/Query/newAlbumsReleases";
+import GET_TRENDY_ALBUMS from "../gql/albums/Query/trendyAlbums";
+import GET_RECOMMENDED_ALBUMS from "../gql/albums/Query/recommendedAlbums";
 
 interface Album {
   id: string;

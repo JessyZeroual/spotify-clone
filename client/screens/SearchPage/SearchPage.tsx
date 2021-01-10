@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { ThemeContext } from "styled-components";
 import { useFocusEffect } from "@react-navigation/native";
-import GET_ARTISTS from "../../gql/Query/artists";
+import GET_ARTISTS from "../../gql/artists/Query/artists";
 import { Container, Text } from "../../styles/commonStyled";
 import {
   Input,

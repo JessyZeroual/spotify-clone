@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native";
 import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
 import { ThemeContext } from "styled-components";
 import { useQuery } from "@apollo/client";
-import GET_TRACKS_BY_ALBUM from "../../gql/Query/tracksByAlbum";
+import GET_TRACKS_BY_ALBUM from "../../gql/tracks/Query/tracksByAlbum";
 import { Text } from "../../styles/commonStyled";
 import {
   Container,
