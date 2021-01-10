@@ -35,10 +35,12 @@ const NavigationBar: React.FC = () => {
                   )
                 })}
                 tabBarOptions={{
+                  showLabel: false,
                   activeTintColor: themeContext.colors.white,
                   inactiveTintColor: themeContext.colors.lightGrey,
                   style: {
-                    backgroundColor: themeContext.colors.secondary
+                    backgroundColor: themeContext.colors.secondary,
+                    minHeight: 50
                   }
                 }}
               >
