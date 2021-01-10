@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const WrapperMusicItem = styled.TouchableOpacity`
+export const WrapperTrackItem = styled.TouchableOpacity`
   display: flex;
   flex-direction: row;
   padding: 15px 0px;

@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export default gql`
-  query musicsByAlbum($id: String!) {
-    musicsByAlbum(id: $id) {
+  query tracksByAlbum($id: String!) {
+    tracksByAlbum(id: $id) {
       id
       name
       artists {

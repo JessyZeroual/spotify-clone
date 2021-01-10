@@ -1,12 +1,23 @@
-const { ApolloServer } = require("apollo-server");
+const { ApolloServer, gql } = require("apollo-server");
 require("dotenv").config();
-const typeDefs = require("./typeDefs");
-const resolvers = require("./resolvers");
+const albums = require("./albums");
+const artists = require("./artists");
+const tracks = require("./tracks");
 const getToken = require("./utils/getToken");
 
+const typeDef = gql`
+  type Query
+
+  type Image {
+    height: Int
+    url: String
+    width: Int
+  }
+`;
+
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  typeDefs: [typeDef, albums.typeDef, artists.typeDef, tracks.typeDef],
+  resolvers: [albums.resolvers, artists.resolvers, tracks.resolvers],
   context: async ({ req }) => {
     const token = await getToken();
     return { token };

@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import { FlatList } from "react-native";
 import { ThemeContext } from "styled-components";
-import WrapperMusicList from "./MusicList.styled";
+import WrapperTrackList from "./TrackList.styled";
 import { Text } from "../../styles/commonStyled";
-import MusicItem from "../MusicItem/MusicItem";
+import TrackItem from "../TrackItem/TrackItem";
 
-const MusicList: React.FC<{
+const TrackList: React.FC<{
   nameList: string;
   data: {
     id: string;
@@ -16,14 +16,14 @@ const MusicList: React.FC<{
   const themeContext = useContext(ThemeContext);
   const [selectedId, setSelectedId] = useState("");
   return (
-    <WrapperMusicList>
+    <WrapperTrackList>
       <Text bold fontSize={themeContext.fontSizes.h2}>
         {nameList}
       </Text>
       <FlatList
         data={data}
         renderItem={({ item }) => (
-          <MusicItem
+          <TrackItem
             id={item.id}
             name={item.name}
             artists={item.artists}
@@ -34,8 +34,8 @@ const MusicList: React.FC<{
         keyExtractor={(item) => item.id}
         extraData={selectedId}
       />
-    </WrapperMusicList>
+    </WrapperTrackList>
   );
 };
 
-export default MusicList;
+export default TrackList;

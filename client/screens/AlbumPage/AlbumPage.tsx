@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native";
 import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
 import { ThemeContext } from "styled-components";
 import { useQuery } from "@apollo/client";
-import GET_MUSICS_BY_ALBUM from "../../gql/Query/musicsByAlbum";
+import GET_TRACKS_BY_ALBUM from "../../gql/Query/tracksByAlbum";
 import { Text } from "../../styles/commonStyled";
 import {
   Container,
@@ -16,7 +16,7 @@ import getFontSizeFromNumberOfCharacters from "../../utils/getFontSizeFromNumber
 import truncateString from "../../utils/truncateString";
 import Logo from "../../assets/vinyl.jpg";
 
-import MusicList from "../../components/MusicList/MusicList";
+import TrackList from "../../components/TrackList/TrackList";
 import Loader from "../../components/Loader/Loader";
 
 type ParamList = {
@@ -32,7 +32,7 @@ const AlbumPage: React.FC = () => {
   const navigation = useNavigation();
   const themeContext = useContext(ThemeContext);
   const { albumId, name, uri } = route.params;
-  const { loading, data } = useQuery(GET_MUSICS_BY_ALBUM, {
+  const { loading, data } = useQuery(GET_TRACKS_BY_ALBUM, {
     variables: { id: albumId }
   });
 
@@ -60,7 +60,7 @@ const AlbumPage: React.FC = () => {
         {loading ? (
           <Loader />
         ) : (
-          <MusicList nameList="" data={data.musicsByAlbum} />
+          <TrackList nameList="" data={data.tracksByAlbum} />
         )}
       </SafeAreaView>
     </Container>

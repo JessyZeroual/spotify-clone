@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { ThemeContext } from "styled-components";
 import { FlatList, View } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
-import { WrapperMusicItem, WrapperIcon } from "./MusicItem.styled";
+import { WrapperTrackItem, WrapperIcon } from "./TrackItem.styled";
 import { Text } from "../../styles/commonStyled";
 import truncateString from "../../utils/truncateString";
 
-const MusicItem: React.FC<{
+const TrackItem: React.FC<{
   id: string;
   name: string;
   artists: {
@@ -18,7 +18,7 @@ const MusicItem: React.FC<{
 }> = ({ id, name, artists, selectedId, setSelectedId }) => {
   const themeContext = useContext(ThemeContext);
   return (
-    <WrapperMusicItem
+    <WrapperTrackItem
       onPress={() => {
         setSelectedId(selectedId === id ? "" : id);
       }}
@@ -55,8 +55,8 @@ const MusicItem: React.FC<{
           size={15}
         />
       </WrapperIcon>
-    </WrapperMusicItem>
+    </WrapperTrackItem>
   );
 };
 
-export default MusicItem;
+export default TrackItem;
