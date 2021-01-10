@@ -18,8 +18,19 @@ export const WrapperSearch = styled.View`
   border-radius: 8px;
   margin: 10px 0px;
 `;
+export const WrapperHeader = styled.View`
+  padding: 15px;
+`;
 
 export const Icon = styled(AntDesign)`
   padding: 10px 15px;
   color: ${({ theme }) => theme.colors.grey};
+`;
+
+export const Image = styled.ImageBackground`
+  flex: 1;
+  width: 100%;
+  padding-top: 35px;
+  display: flex;
+  justify-content: space-between;
 `;
