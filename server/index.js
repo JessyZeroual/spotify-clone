@@ -1,16 +1,17 @@
-const { ApolloServer, gql } = require("apollo-server");
 require("dotenv").config();
+const { ApolloServer } = require("apollo-server");
+const getToken = require("./utils/getToken");
+
+const { commonTypeDef } = require("./commonTypeDef");
 const albums = require("./albums");
 const artists = require("./artists");
 const tracks = require("./tracks");
-const { commonTypeDef } = require("./commonTypeDef");
-const getToken = require("./utils/getToken");
 const pjson = require("../client/package.json");
 
 const server = new ApolloServer({
   typeDefs: [commonTypeDef, albums.typeDef, artists.typeDef, tracks.typeDef],
   resolvers: [albums.resolvers, artists.resolvers, tracks.resolvers],
-  context: async ({ req }) => {
+  context: async () => {
     const token = await getToken();
     return { token };
   },

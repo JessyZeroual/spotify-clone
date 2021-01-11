@@ -56,7 +56,7 @@ const resolvers = {
     },
     recommendedAlbums: async (_, args, context) => {
       const response = await fetch(
-        `${BASE_URL}/recommendations?seed_artists=2eh8cEKZk4VeruUrGq748D%2C1PTl9q5EaEZejVGts7MBLN&seed_genres=hip-hop&seed_tracks=57sOSHzR4aieOMe99cHqKy%2C79Gk0yMElcX60EJwqdP4xH`,
+        `${BASE_URL}/recommendations?seed_artists=2eh8cEKZk4VeruUrGq748D%2C1PTl9q5EaEZejVGts7MBLN&seed_genres=hip-hop&seed_tracks=57sOSHzR4aieOMe99cHqKy%2C79Gk0yMElcX60EJwqdP4xH&limit=10`,
         {
           method: "GET",
           headers: { Authorization: "Bearer " + context.token },
