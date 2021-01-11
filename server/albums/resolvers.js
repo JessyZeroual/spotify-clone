@@ -1,3 +1,4 @@
+const { ApolloError } = require("apollo-server");
 const fetch = require("node-fetch");
 const removeDuplicatesObjectInArray = require("../utils/removeDuplicatesObjectInArray");
 
@@ -11,9 +12,11 @@ const resolvers = {
           headers: { Authorization: "Bearer " + context.token },
         }
       );
-      const data = await response.json();
 
-      return data.albums.items.map((album) => ({
+      const { albums, error } = await response.json();
+      if (error) throw new ApolloError(error.message, error.status);
+
+      return albums.items.map((album) => ({
         id: album.id,
         name: album.name,
         type: album.type,
@@ -32,9 +35,10 @@ const resolvers = {
           headers: { Authorization: "Bearer " + context.token },
         }
       );
-      const data = await response.json();
+      const { items, error } = await response.json();
+      if (error) throw new ApolloError(error.message, error.status);
 
-      const mostPopularyItems = data.items.filter(
+      const mostPopularyItems = items.filter(
         ({ track }) => track.popularity > 75
       );
 
@@ -57,11 +61,13 @@ const resolvers = {
           headers: { Authorization: "Bearer " + context.token },
         }
       );
-      const data = await response.json();
 
-      const items = await removeDuplicatesObjectInArray(data.tracks, "name");
+      const { tracks, error } = await response.json();
+      if (error) throw new ApolloError(error.message, error.status);
 
-      return items.map((track) => ({
+      const _tracks = await removeDuplicatesObjectInArray(tracks, "id");
+
+      return _tracks.map((track) => ({
         id: track.album.id,
         name: track.album.name,
         type: track.album.type,
@@ -80,11 +86,12 @@ const resolvers = {
           headers: { Authorization: "Bearer " + context.token },
         }
       );
-      const data = await response.json();
+      const { items, error } = await response.json();
+      if (error) throw new ApolloError(error.message, error.status);
 
-      const items = await removeDuplicatesObjectInArray(data.items, "name");
+      const _items = await removeDuplicatesObjectInArray(items, "name");
 
-      return items.map((item) => ({
+      return _items.map((item) => ({
         id: item.id,
         name: item.name,
         type: item.type,

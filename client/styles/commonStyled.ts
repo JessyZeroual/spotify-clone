@@ -6,6 +6,12 @@ export const Container = styled(SafeAreaView)`
   background-color: ${({ theme }) => theme.colors.black};
 `;
 
+export const ContainerCenter = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Text = styled.Text<{
   color?: string;
   backgroundColor?: string;

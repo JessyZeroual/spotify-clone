@@ -13,12 +13,14 @@ import {
 } from "./SearchPage.styled";
 import BackgroundImage from "../../assets/searchImage.jpg";
 import SearchList from "../../components/SearchList/SearchList";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import Loader from "../../components/Loader/Loader";
 
 const SearchArtist: React.FC = () => {
   const themeContext = useContext(ThemeContext);
   const [searchTerms, setSearchTerms] = useState("");
   const [shouldInputFocused, setShouldInputFocused] = useState(false);
-  const [executeSearch, { data }] = useLazyQuery(GET_ARTISTS, {
+  const [executeSearch, { loading, error, data }] = useLazyQuery(GET_ARTISTS, {
     variables: { searchTerms }
   });
 
@@ -58,7 +60,15 @@ const SearchArtist: React.FC = () => {
         </WrapperSearch>
       </WrapperHeader>
 
-      {!searchTerms && <Image source={BackgroundImage} />}
+      {loading && <Loader />}
+      {!searchTerms && !loading && <Image source={BackgroundImage} />}
+      {searchTerms !== "" && error && (
+        <ErrorMessage
+          errorMessage={
+            error.message === "No search query" ? "Aucun resultat trouvé" : ""
+          }
+        />
+      )}
       {data?.artists && <SearchList artists={data?.artists} />}
     </Container>
   );

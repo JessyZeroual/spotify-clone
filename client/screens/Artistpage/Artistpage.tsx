@@ -15,6 +15,7 @@ import {
 import getFontSizeFromNumberOfCharacters from "../../utils/getFontSizeFromNumberOfCharacters";
 import truncateString from "../../utils/truncateString";
 import AlbumList from "../../components/AlbumList/AlbumList";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loader from "../../components/Loader/Loader";
 import Logo from "../../assets/user.jpg";
 
@@ -31,9 +32,11 @@ const Artistpage: React.FC = () => {
   const navigation = useNavigation();
   const themeContext = useContext(ThemeContext);
   const { artistId, name, uri } = route.params;
-  const { loading, data } = useQuery(GET_ALBUMS_BY_ARTIST, {
+  const { loading, error, data } = useQuery(GET_ALBUMS_BY_ARTIST, {
     variables: { id: artistId }
   });
+
+  if (loading) return <Loader />;
   return (
     <Container>
       <Image
@@ -54,13 +57,13 @@ const Artistpage: React.FC = () => {
           </Text>
         </WrapperText>
       </Image>
-      <WrapperList>
-        {loading ? (
-          <Loader />
-        ) : (
+      {error ? (
+        <ErrorMessage />
+      ) : (
+        <WrapperList>
           <AlbumList nameList="" data={data.albumsByArtist} />
-        )}
-      </WrapperList>
+        </WrapperList>
+      )}
     </Container>
   );
 };

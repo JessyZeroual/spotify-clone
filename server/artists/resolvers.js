@@ -1,3 +1,4 @@
+const { ApolloError } = require("apollo-server");
 const fetch = require("node-fetch");
 
 const resolvers = {
@@ -10,9 +11,10 @@ const resolvers = {
           headers: { Authorization: "Bearer " + context.token },
         }
       );
-      const data = await response.json();
+      const { artists, error } = await response.json();
+      if (error) throw new ApolloError(error.message, error.status);
 
-      return data.artists.items.map((artist) => ({
+      return artists.items.map((artist) => ({
         id: artist.id,
         name: artist.name,
         type: artist.type,

@@ -17,6 +17,7 @@ import truncateString from "../../utils/truncateString";
 import Logo from "../../assets/vinyl.jpg";
 
 import TrackList from "../../components/TrackList/TrackList";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loader from "../../components/Loader/Loader";
 
 type ParamList = {
@@ -32,9 +33,10 @@ const AlbumPage: React.FC = () => {
   const navigation = useNavigation();
   const themeContext = useContext(ThemeContext);
   const { albumId, name, uri } = route.params;
-  const { loading, data } = useQuery(GET_TRACKS_BY_ALBUM, {
+  const { loading, error, data } = useQuery(GET_TRACKS_BY_ALBUM, {
     variables: { id: albumId }
   });
+  if (loading) return <Loader />;
 
   return (
     <Container>
@@ -57,8 +59,8 @@ const AlbumPage: React.FC = () => {
         </WrapperText>
       </Image>
       <SafeAreaView style={{ flex: 1 }}>
-        {loading ? (
-          <Loader />
+        {error ? (
+          <ErrorMessage />
         ) : (
           <TrackList nameList="" data={data.tracksByAlbum} />
         )}

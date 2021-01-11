@@ -18,15 +18,23 @@ const useAlbums = (): {
   trendyAlbums: Album[];
   recommendedAlbums: Album[];
   loading: boolean;
+  error: {
+    newAlbumsReleases?: boolean;
+    recommendedAlbums?: boolean;
+    trendyAlbums?: boolean;
+  };
 } => {
   let loading = true;
+
+  const error = {
+    newAlbumsReleases: false,
+    recommendedAlbums: false,
+    trendyAlbums: false
+  };
+
   const newAlbumsReleasesResult = useQuery(GET_NEW_ALBUMS_RELEASES);
   const trendyAlbumsResult = useQuery(GET_TRENDY_ALBUMS);
   const recommendedAlbumsResult = useQuery(GET_RECOMMENDED_ALBUMS);
-
-  const { newAlbumsReleases } = newAlbumsReleasesResult.data || [];
-  const { trendyAlbums } = trendyAlbumsResult.data || [];
-  const { recommendedAlbums } = recommendedAlbumsResult.data || [];
 
   if (
     !newAlbumsReleasesResult.loading &&
@@ -35,11 +43,20 @@ const useAlbums = (): {
   )
     loading = false;
 
+  if (newAlbumsReleasesResult.error) error.newAlbumsReleases = true;
+  if (trendyAlbumsResult.error) error.recommendedAlbums = true;
+  if (recommendedAlbumsResult.error) error.trendyAlbums = true;
+
+  const { newAlbumsReleases } = newAlbumsReleasesResult.data || [];
+  const { trendyAlbums } = trendyAlbumsResult.data || [];
+  const { recommendedAlbums } = recommendedAlbumsResult.data || [];
+
   return {
     newAlbumsReleases,
     trendyAlbums,
     recommendedAlbums,
-    loading
+    loading,
+    error
   };
 };
 

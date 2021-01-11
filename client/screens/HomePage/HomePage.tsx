@@ -17,6 +17,7 @@ const HomePage: React.FC = () => {
   const navigation = useNavigation();
   const {
     loading,
+    error,
     newAlbumsReleases,
     trendyAlbums,
     recommendedAlbums
@@ -44,12 +45,18 @@ const HomePage: React.FC = () => {
       </WrapperHeader>
 
       <WrapperList>
-        <AlbumList
-          nameList="Dernières sorties populaires"
-          data={newAlbumsReleases}
-        />
-        <AlbumList nameList="Trending actuellement" data={trendyAlbums} />
-        <AlbumList nameList="Recommandé pour vous" data={recommendedAlbums} />
+        {!error.newAlbumsReleases && (
+          <AlbumList
+            nameList="Dernières sorties populaires"
+            data={newAlbumsReleases}
+          />
+        )}
+        {!error.trendyAlbums && (
+          <AlbumList nameList="Trending actuellement" data={trendyAlbums} />
+        )}
+        {!error.recommendedAlbums && (
+          <AlbumList nameList="Recommandé pour vous" data={recommendedAlbums} />
+        )}
       </WrapperList>
     </Container>
   );
