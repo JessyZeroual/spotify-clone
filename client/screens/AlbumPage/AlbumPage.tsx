@@ -54,7 +54,7 @@ const AlbumPage: React.FC = () => {
         </WrapperIcon>
         <WrapperText colors={["transparent", themeContext.colors.black]}>
           <Text bold fontSize={getFontSizeFromNumberOfCharacters(name.length)}>
-            {truncateString(name, 30)}
+            {truncateString(name, 20)}
           </Text>
         </WrapperText>
       </Image>

@@ -4,6 +4,7 @@ import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { WrapperItem, WrapperIcon, Image } from "./SearchItem.styled";
 import { Text } from "../../styles/commonStyled";
+import truncateString from "../../utils/truncateString";
 
 const SearchItem: React.FC<{
   id: string;
@@ -35,7 +36,7 @@ const SearchItem: React.FC<{
       )}
 
       <Text bold fontSize={themeContext.fontSizes.h4}>
-        {name}
+        {truncateString(name, 25)}
       </Text>
 
       <Feather
