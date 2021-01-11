@@ -1,6 +1,6 @@
 # spotify-clone
 
-![alt text](https://res.cloudinary.com/dsqtadlcb/image/upload/v1610371839/Sans_titre_mryoif.png "Logo Title Text 1")
+![alt text](https://res.cloudinary.com/dsqtadlcb/image/upload/c_scale,w_1000/v1610371839/Sans_titre_mryoif.png "Presentation projet")
 
 ## Configuration
 
