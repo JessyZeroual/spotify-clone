@@ -3,20 +3,12 @@ require("dotenv").config();
 const albums = require("./albums");
 const artists = require("./artists");
 const tracks = require("./tracks");
+const { commonTypeDef } = require("./commonTypeDef");
 const getToken = require("./utils/getToken");
-
-const typeDef = gql`
-  type Query
-
-  type Image {
-    height: Int
-    url: String
-    width: Int
-  }
-`;
+const pjson = require("../client/package.json");
 
 const server = new ApolloServer({
-  typeDefs: [typeDef, albums.typeDef, artists.typeDef, tracks.typeDef],
+  typeDefs: [commonTypeDef, albums.typeDef, artists.typeDef, tracks.typeDef],
   resolvers: [albums.resolvers, artists.resolvers, tracks.resolvers],
   context: async ({ req }) => {
     const token = await getToken();
@@ -24,6 +16,6 @@ const server = new ApolloServer({
   },
 });
 
-server.listen({ host: "192.168.1.14", port: 8000 }).then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
+server.listen({ host: `${pjson.host}`, port: 8000 }).then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`);
 });
