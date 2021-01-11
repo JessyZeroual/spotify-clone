@@ -1,12 +1,13 @@
 const { ApolloError } = require("apollo-server");
 const fetch = require("node-fetch");
+const { BASE_URL } = require("../constants");
 const removeDuplicatesObjectInArray = require("../utils/removeDuplicatesObjectInArray");
 
 const resolvers = {
   Query: {
     newAlbumsReleases: async (_, args, context) => {
       const response = await fetch(
-        `https://api.spotify.com/v1/browse/new-releases?country=FR&offset=0&limit=20`,
+        `${BASE_URL}/browse/new-releases?country=FR&offset=0&limit=20`,
         {
           method: "GET",
           headers: { Authorization: "Bearer " + context.token },
@@ -29,7 +30,7 @@ const resolvers = {
     },
     trendyAlbums: async (_, args, context) => {
       const response = await fetch(
-        `https://api.spotify.com/v1/playlists/37i9dQZEVXbIPWwFssbupI/tracks?offset=0&limit=50`,
+        `${BASE_URL}/playlists/37i9dQZEVXbIPWwFssbupI/tracks?offset=0&limit=50`,
         {
           method: "GET",
           headers: { Authorization: "Bearer " + context.token },
@@ -55,7 +56,7 @@ const resolvers = {
     },
     recommendedAlbums: async (_, args, context) => {
       const response = await fetch(
-        `https://api.spotify.com/v1/recommendations?seed_artists=2eh8cEKZk4VeruUrGq748D%2C1PTl9q5EaEZejVGts7MBLN&seed_genres=hip-hop&seed_tracks=57sOSHzR4aieOMe99cHqKy%2C79Gk0yMElcX60EJwqdP4xH`,
+        `${BASE_URL}/recommendations?seed_artists=2eh8cEKZk4VeruUrGq748D%2C1PTl9q5EaEZejVGts7MBLN&seed_genres=hip-hop&seed_tracks=57sOSHzR4aieOMe99cHqKy%2C79Gk0yMElcX60EJwqdP4xH`,
         {
           method: "GET",
           headers: { Authorization: "Bearer " + context.token },
@@ -79,13 +80,10 @@ const resolvers = {
       }));
     },
     albumsByArtist: async (_, { id }, context) => {
-      const response = await fetch(
-        `https://api.spotify.com/v1/artists/${id}/albums`,
-        {
-          method: "GET",
-          headers: { Authorization: "Bearer " + context.token },
-        }
-      );
+      const response = await fetch(`${BASE_URL}/artists/${id}/albums`, {
+        method: "GET",
+        headers: { Authorization: "Bearer " + context.token },
+      });
       const { items, error } = await response.json();
       if (error) throw new ApolloError(error.message, error.status);
 

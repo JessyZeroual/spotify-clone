@@ -1,11 +1,12 @@
 const { ApolloError } = require("apollo-server");
 const fetch = require("node-fetch");
+const { BASE_URL } = require("../constants");
 
 const resolvers = {
   Query: {
     artists: async (_, { searchTerms }, context) => {
       const response = await fetch(
-        `https://api.spotify.com/v1/search?q=${searchTerms}&type=artist&market=FR&limit=10`,
+        `${BASE_URL}/search?q=${searchTerms}&type=artist&market=FR&limit=10`,
         {
           method: "GET",
           headers: { Authorization: "Bearer " + context.token },
