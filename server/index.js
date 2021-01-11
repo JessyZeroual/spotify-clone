@@ -16,6 +16,8 @@ const server = new ApolloServer({
   },
 });
 
-server.listen({ host: `${pjson.host}`, port: 8000 }).then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
-});
+server
+  .listen({ host: `${pjson["server-host"]}`, port: 8000 })
+  .then(({ url }) => {
+    console.log(`🚀 Server ready at ${url}`);
+  });
