@@ -37,3 +37,5 @@ cd client yarn install && yarn start
 
 Ce projet a été enrichissant, Il m'a permis de travailler avec typeScript que je n'utilise pas habituellement (Il est possible que certaines choses sont à revoir).
 J'ai mis plus ou moins une semaine pour réaliser ce projet.
+
+PS: Afin de pouvoir lire des musiques, n'oubliez pas d'enlever le mode silencieux ;)
