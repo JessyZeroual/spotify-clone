@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { WrapperAlbumItem, Image } from "./AlbumItem.styled";
 import { Text } from "../../styles/commonStyled";
 import truncateString from "../../utils/truncateString";
+import Logo from "../../assets/user.jpg";
 
 const AlbumItem: React.FC<{
   id: string;
@@ -27,9 +28,13 @@ const AlbumItem: React.FC<{
       }
     >
       <Image
-        source={{
+        source={
           uri
-        }}
+            ? {
+                uri
+              }
+            : Logo
+        }
       />
       <Text bold>{truncateString(name, 18)}</Text>
       <Text color={themeContext.colors.lightGrey}>
