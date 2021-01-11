@@ -1,5 +1,5 @@
 {
-  "server-host": "localhost",
+  "server-host": "192.168.1.14",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -16,6 +16,7 @@
     "@react-navigation/native": "^5.8.10",
     "@react-navigation/stack": "^5.12.8",
     "expo": "~40.0.0",
+    "expo-av": "^8.7.0",
     "expo-linear-gradient": "^8.4.0",
     "expo-status-bar": "~1.0.3",
     "graphql": "^15.4.0",

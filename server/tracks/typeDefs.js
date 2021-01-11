@@ -5,6 +5,7 @@ const typeDef = gql`
     id: String
     name: String
     artists: [Artist]
+    previewUrl: String
   }
 
   extend type Query {

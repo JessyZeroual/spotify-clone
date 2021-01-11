@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "styled-components";
 import { FlatList, View } from "react-native";
-import { Fontisto } from "@expo/vector-icons";
+import { Fontisto, Entypo } from "@expo/vector-icons";
 import { WrapperTrackItem, WrapperIcon } from "./TrackItem.styled";
 import { Text } from "../../styles/commonStyled";
 import truncateString from "../../utils/truncateString";
@@ -13,16 +13,14 @@ const TrackItem: React.FC<{
     id: string;
     name: string;
   }[];
+  previewUrl: string;
   selectedId: string;
   setSelectedId: (id: string) => void;
-}> = ({ id, name, artists, selectedId, setSelectedId }) => {
+}> = ({ id, name, artists, previewUrl, selectedId, setSelectedId }) => {
   const themeContext = useContext(ThemeContext);
+
   return (
-    <WrapperTrackItem
-      onPress={() => {
-        setSelectedId(selectedId === id ? "" : id);
-      }}
-    >
+    <WrapperTrackItem onPress={() => previewUrl && setSelectedId(id)}>
       <View>
         <Text
           bold
@@ -44,17 +42,27 @@ const TrackItem: React.FC<{
           horizontal
         />
       </View>
-      <WrapperIcon>
-        <Fontisto
-          name={selectedId === id ? "pause" : "play"}
-          color={
-            selectedId === id
-              ? themeContext.colors.primary
-              : themeContext.colors.lightGrey
-          }
-          size={15}
-        />
-      </WrapperIcon>
+      {previewUrl ? (
+        <WrapperIcon>
+          <Fontisto
+            name={selectedId === id ? "pause" : "play"}
+            color={
+              selectedId === id
+                ? themeContext.colors.primary
+                : themeContext.colors.lightGrey
+            }
+            size={15}
+          />
+        </WrapperIcon>
+      ) : (
+        <WrapperIcon>
+          <Entypo
+            name="block"
+            color={themeContext.colors.lightGrey}
+            size={25}
+          />
+        </WrapperIcon>
+      )}
     </WrapperTrackItem>
   );
 };

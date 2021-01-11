@@ -17,6 +17,7 @@ const resolvers = {
         id: item.id,
         name: item.name,
         artists: item.artists,
+        previewUrl: item.preview_url,
       }));
     },
   },
