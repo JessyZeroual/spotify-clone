@@ -1,5 +1,5 @@
 {
-  "server-host": "192.168.1.14",
+  "server-host": "localhost",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
