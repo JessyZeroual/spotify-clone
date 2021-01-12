@@ -10,7 +10,7 @@ const Library: React.FC = () => {
     <Container edges={["right", "left", "top"]}>
       <WrapperText>
         <Text bold fontSize={themeContext.fontSizes.h1}>
-          Bibliotèque
+          Library
         </Text>
       </WrapperText>
     </Container>
